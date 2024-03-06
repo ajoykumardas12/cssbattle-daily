@@ -49,17 +49,20 @@ def isGitBranchMain():
     current_git_branch = git_branch_check.stdout.strip()
     return current_git_branch == 'main'
 
+def printSuccessfulPushMessage():
+    print(f"Remote file: " + "https://github.com/ajoykumardas12/cssbattle-solutions/tree/main/solutions/" + today_date + "/index.html")
+    
 def runGitProcess():
     subprocess.run(['git', 'checkout', 'main'])
     
     isBranchMain = isGitBranchMain()
     
-
     if isBranchMain:
-        subprocess.run(['git', 'add', '.'])
+        subprocess.run(['git', 'add', f'{today_date}/index.html'])
         commit_message = f'cssb:{today_date}'
         subprocess.run(['git', 'commit', '-m', commit_message])
         subprocess.run(['git', 'push', 'origin', 'main'])
+        printSuccessfulPushMessage()
     else:
         print(f"⚠ Current branch is {current_git_branch}, not 'main'.")
 

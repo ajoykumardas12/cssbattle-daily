@@ -8,7 +8,6 @@ solutions_folder = r'C:\Users\ajoyk\Desktop\projects\cssbattle-solutions\solutio
 # source_code_file_path = r'C:\Users\ajoyk\Documents\cssb.txt'
 today_date = datetime.today().strftime('%Y-%m-%d')
 new_folder_path = os.path.join(solutions_folder, today_date)
-new_folder_exists = os.path.exists(new_folder_path)
 index_file_path = os.path.join(new_folder_path, 'index.html')
 current_git_branch = ''
 
@@ -20,6 +19,8 @@ def confirmUpdate():
         exit()
         
 def optionallyMakeDir():
+    new_folder_exists = os.path.exists(new_folder_path)
+    
     if os.path.exists(solutions_folder):
         if new_folder_exists:
             confirmUpdate()
